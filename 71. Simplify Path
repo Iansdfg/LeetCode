@@ -1,0 +1,27 @@
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        stack = []
+        strings = path.split('/')
+        print(strings)
+        for string in strings:
+            if not string or string == '.':
+                continue
+            elif string == '..':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(string)
+        return '/'+'/'.join(stack)
+
+def execute():
+    sol = Solution()
+    path = "/a/../../b/../c//.//"
+    print(sol.simplifyPath(path))
+
+if __name__ == '__main__':
+    execute()
+
