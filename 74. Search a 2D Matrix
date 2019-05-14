@@ -1,0 +1,80 @@
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix or not matrix[0]:
+            return False
+        top = 0
+        bot = len(matrix)-1
+        while top <= bot:
+            m = (top + bot) // 2
+            if target < matrix[m][0]:
+                bot = m - 1
+            elif target > matrix[m][-1]:
+                top = m + 1
+            else:
+                if target in matrix[m]:
+                    return True
+                else:
+                    return False
+        return False
+
+        # if not matrix: return False
+        # m, n = len(matrix), len(matrix[0])
+        # if not m or not n: return False
+        # if target < matrix[0][0] or target > matrix[m-1][n-1]: return False
+        #
+        # top = 0
+        # bottom = len(matrix)-1
+        # row = None
+        # while top <= bottom:
+        #     mid_row = (top+bottom)//2
+        #     if matrix[mid_row][0] <= target <= matrix[mid_row][n - 1]:
+        #         row = mid_row
+        #         break
+        #     elif target < matrix[mid_row][0]:
+        #         bottom = mid_row-1
+        #     elif target > matrix[mid_row][n-1]:
+        #         top = mid_row+1
+        #
+        # if row == None: return False
+        #
+        # l,r = 0, n-1
+        # while l <= r:
+        #     m = (l+r)//2
+        #     if matrix[row][m]==target:
+        #         return True
+        #     elif matrix[row][m]<target:
+        #         l = m+1
+        #     else:
+        #         r = m-1
+        # return False
+
+
+
+
+
+def execute():
+    sol = Solution()
+    matrix = [
+        [1, 3, 5, 7],
+        [10, 11, 16, 20],
+        [23, 30, 34, 50]
+    ]
+    target = 11
+    # matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50]]
+    # target = 13
+    # matrix = [
+    #     []
+    # ]
+    # target = 0
+    # matrix = [[1]]
+    # target = 2
+    print(sol.searchMatrix(matrix, target))
+
+if __name__ == '__main__':
+    execute()
+
