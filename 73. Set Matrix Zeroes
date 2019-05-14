@@ -1,0 +1,19 @@
+class Solution(object):
+    def setZeroes(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: None Do not return anything, modify matrix in-place instead.
+        """
+        m, n = len(matrix), len(matrix[0])
+        row_zero, col_zero = [], []
+        for i in range(n):
+            for j in range(m):
+                if matrix[j][i] == 0:
+                    row_zero.append(i)
+                    col_zero.append(j)
+        for i in row_zero:
+            for j in range(m):
+                matrix[j][i] = 0
+        for j in col_zero:
+            for i in range(n):
+                matrix[j][i] = 0
