@@ -1,0 +1,40 @@
+class Solution(object):
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        r, w, b = 0, 0, 0
+        for num in nums:
+            if num == 0:
+                r+=1
+            elif num == 1:
+                w +=1
+            elif num == 2:
+                b += 1
+        # print(r,w,b)
+        for i in range(len(nums)):
+            if r:
+                nums[i] = 0
+                r-=1
+            else:
+                if w:
+                    nums[i] = 1
+                    w-=1
+                else:
+                    if b:
+                        nums[i] = 2
+                        b-=1
+        return nums
+
+
+
+
+def execute():
+    sol = Solution()
+    nums = [0]
+    print(sol.sortColors(nums))
+
+if __name__ == '__main__':
+    execute()
+
