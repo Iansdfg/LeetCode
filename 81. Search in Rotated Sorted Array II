@@ -1,0 +1,45 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+
+        if not nums:
+            return False
+
+        l, r = 0, len(nums)-1
+
+        while len(nums) > 1 and nums[l] == nums[r] and l < r:
+            l += 1
+            
+        while l <= r:
+            m = (l+r)//2
+            if target == nums[m]:
+                return True
+            if nums[m] > nums[l]:
+                if nums[l] <= target <= nums[m]:
+                    r = m - 1
+                else:
+                    l = m + 1
+            elif nums[m] < nums[l]:
+                if nums[m] <= target <= nums[r]:
+                    l = m + 1
+                else:
+                    r = m - 1
+        return False
+
+def execute():
+    sol = Solution()
+    nums = [2, 5, 6, 0, 0, 1, 2]
+    target = 3
+    # nums = [0,0,0]
+    # target = 1
+    # nums = [1, 3, 1, 1, 1]
+    # target = 3
+    print(sol.search(nums, target))
+
+if __name__ == '__main__':
+    execute()
+
