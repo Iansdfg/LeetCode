@@ -1,0 +1,58 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+# recursive 
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root:
+            return True
+        else:
+            return self.mirrow(root.left, root.right)
+    
+    def mirrow(self, l, r):
+        if not l and not r:
+            return True
+        if l and r and l.val == r.val:
+            return self.mirrow(l.left, r.right) and self.mirrow(l.right, r.left)
+        else:
+            return False
+            
+# Iterative 
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root: return True
+        if not root.left and not root.right: return True
+        if not root.left or not root.right:return False
+        stackL, stackR = [],[]
+        stackL.append(root.left)
+        stackR.append(root.right)
+        while stackL and stackR:
+            l, r = stackL.pop(), stackR.pop()
+            print(l.val,r.val)
+            if l.val != r.val:
+                return False
+            if l.left== None and r.right!=None or l.left!=None and r.right==None:
+                return False
+            if l.right==None and r.left!=None or l.right!=None and r.left==None:
+                return False
+            if l.left and r.right:
+                stackL.append(l.left)
+                stackR.append(r.right)
+            if l.right and r.left:
+                stackL.append(l.right)
+                stackR.append(r.left)
+        return True
+            
+        
+        
