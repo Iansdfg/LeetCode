@@ -1,0 +1,28 @@
+class Solution(object):
+    def minimumTotal(self, triangle):
+        """
+        :type triangle: List[List[int]]
+        :rtype: int
+        """
+        if not triangle:return None
+        other = triangle[:]
+        for i in range(1, len(other)):
+            for j in range(len(other[i])):
+                if j == 0:
+                    other[i][j] = triangle[i-1][j] + triangle[i][j]
+                elif j == len(other[i])-1:
+                    other[i][j] = triangle[i - 1][j-1] + triangle[i][j]
+                else:
+                    other[i][j] = min(triangle[i - 1][j - 1] + triangle[i][j], triangle[i-1][j] + triangle[i][j])
+        return min(other[-1])
+
+
+def execute():
+    sol = Solution()
+    triangle = [
+]
+    print(sol.minimumTotal(triangle))
+
+if __name__ == '__main__':
+    execute()
+
