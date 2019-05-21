@@ -1,0 +1,75 @@
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def initList(arrary):
+    if len(arrary) == 0:
+        return None
+    root = ListNode(arrary[0])
+    result = root
+    for index, value in enumerate(arrary):
+        if index > 0:
+            root.next = ListNode(value)
+            root = root.next
+    return result
+
+def printList(linkedlist):
+    if linkedlist:
+        print('[', end = '')
+        while linkedlist.next:
+            print(linkedlist.val, end = ', ')
+            linkedlist = linkedlist.next
+        print(linkedlist.val, end = ']\n')
+    else:
+        print('[]')
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class Solution(object):
+    def sortedListToBST(self, head):
+        """
+        :type head: ListNode
+        :rtype: TreeNode
+        """
+        if not head:
+            return None
+        if not head.next:
+            return TreeNode(head.val)
+        beforeMid = self.findMid(head)
+        mid = beforeMid.next if beforeMid.next else None
+        right = mid.next
+        beforeMid.next = None
+        left = head
+        root = TreeNode(mid.val)
+        root.left = self.sortedListToBST(left)
+        root.right = self.sortedListToBST(right)
+        return root
+
+
+    def findMid(self,head):
+        if not head or not head.next: return head
+        dummy = ListNode(-1)
+        dummy.next = runner = head
+        while runner.next:
+            dummy = dummy.next
+            runner = runner.next.next
+            if not runner: break
+        return dummy
+
+
+def execute():
+    l1 = initList([-10,-3,0,5,9])
+    sol = Solution()
+    sol.findMid(l1)
+    root = sol.sortedListToBST(l1)
+    print(root.val if root else None)
+
+if __name__ == '__main__':
+    execute()
+
