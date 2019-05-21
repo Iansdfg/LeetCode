@@ -1,0 +1,23 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buyDay, maxPro = 0, 0
+        for i in range(1, len(prices)):
+            if prices[i] - prices[buyDay] < 0:
+                buyDay = i
+            if prices[i] - prices[buyDay] > maxPro:
+                maxPro = prices[i] - prices[buyDay]
+        return maxPro
+
+
+def execute():
+    sol = Solution()
+    prices = [7,1,5,3,6,4]
+    print(sol.maxProfit(prices))
+
+if __name__ == '__main__':
+    execute()
+
