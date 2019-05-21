@@ -16,10 +16,7 @@ class Solution(object):
             self.flatten(root.right)
         if root.left:
             self.flatten(root.left)
-        self.move(root)
-        
-        
-    def move(self, root):
+        # self.move(root)
         if root.left:
             dummy = root.left
             while dummy.right:
@@ -28,5 +25,15 @@ class Solution(object):
             root.right = root.left
             root.left = None
         return
+        
+    # def move(self, root):
+    #     if root.left:
+    #         dummy = root.left
+    #         while dummy.right:
+    #             dummy = dummy.right
+    #         dummy.right = root.right
+    #         root.right = root.left
+    #         root.left = None
+    #     return
             
         
