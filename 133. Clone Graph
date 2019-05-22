@@ -1,0 +1,64 @@
+
+# Definition for a Node.
+import collections
+
+
+class Node(object):
+    def __init__(self, val, neighbors):
+        self.val = val
+        self.neighbors = neighbors
+
+#         """
+#         DFS
+#         """
+# class Solution(object):
+#     def cloneGraph(self, node):
+#         """
+#         :type node: Node
+#         :rtype: Node
+#         """
+#         node_copy = self.dfs(node, dict())
+#         return node_copy
+#
+#     def dfs(self, node, hashs):
+#         if not node: return None
+#         if node in hashs:
+#             return hashs[node]
+#         else:
+#             copy_node = Node(node.val, [])
+#             hashs[node] = copy_node
+#             for n in node.neighbors:
+#                 n_copy = self.dfs(n, hashs)
+#                 if n_copy:
+#                     copy_node.neighbors.append(n_copy)
+#         return copy_node
+
+class Solution(object):
+    def cloneGraph(self, node):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        que = collections.deque()
+        hashd = dict()
+        que.append(node)
+        node_copy = Node(node.val, [])
+        hashd[node] = node_copy
+        while que:
+            t = que.popleft()
+            if not t: continue
+            for n in t.neighbors:
+                if n not in hashd:
+                    hashd[n] = Node(n.val, [])
+                    que.append(n)
+                hashd[t].neighbors.append(hashd[n])
+        return node_copy
+
+def execute():
+    sol = Solution()
+    s = Node(1,{})
+    print(sol.cloneGraph(s))
+
+if __name__ == '__main__':
+    execute()
+
