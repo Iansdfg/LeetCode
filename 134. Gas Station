@@ -1,0 +1,29 @@
+class Solution(object):
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        if sum(gas) < sum(cost): return -1
+        n, diff, start = len(gas), 0, 0
+        for i in range(n):
+            if gas[i]+diff < cost[i]:
+                start = i+1
+                diff = 0
+            else:
+                diff += gas[i]-cost[i]
+            print(diff)
+        return start
+
+
+def execute():
+    sol = Solution()
+    #      0  1  2  3  4
+    gas = [1, 2, 3, 4, 5]
+    cost = [3, 4, 5, 1, 2]
+    print(sol.canCompleteCircuit(gas, cost))
+
+if __name__ == '__main__':
+    execute()
+
