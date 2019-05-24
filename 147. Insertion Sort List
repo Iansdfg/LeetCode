@@ -1,0 +1,57 @@
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def initList(arrary):
+    if len(arrary) == 0:
+        return None
+    root = ListNode(arrary[0])
+    result = root
+    for index, value in enumerate(arrary):
+        if index > 0:
+            root.next = ListNode(value)
+            root = root.next
+    return result
+
+def printList(linkedlist):
+    if linkedlist:
+        print('[', end = '')
+        while linkedlist.next:
+            print(linkedlist.val, end = ', ')
+            linkedlist = linkedlist.next
+        print(linkedlist.val, end = ']\n')
+    else:
+        print('[]')
+
+
+class Solution(object):
+    def insertionSortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = curr = head
+        while curr.next:
+            if curr.next.val < curr.val:
+                pre = dummy
+                while pre.next.val < curr.next.val:
+                    pre = pre.next
+                temp = curr.next
+                curr.next = temp.next
+                temp.next = pre.next
+                pre.next = temp
+            else:
+                curr = curr.next
+        return dummy.next
+
+def execute():
+    l1 = initList([6, 8, 9, 5, 1, 2, 3, 4, 7])
+    sol = Solution()
+    printList(sol.insertionSortList(l1))
+
+if __name__ == '__main__':
+    execute()
+
