@@ -1,0 +1,80 @@
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def initList(arrary):
+    if len(arrary) == 0:
+        return None
+    root = ListNode(arrary[0])
+    result = root
+    for index, value in enumerate(arrary):
+        if index > 0:
+            root.next = ListNode(value)
+            root = root.next
+    return result
+
+def printList(linkedlist):
+    if linkedlist:
+        print('[', end = '')
+        while linkedlist.next:
+            print(linkedlist.val, end = ', ')
+            linkedlist = linkedlist.next
+        print(linkedlist.val, end = ']\n')
+    else:
+        print('[]')
+
+
+class Solution(object):
+    def sortList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        return self.devide(head)
+
+    def devide(self,head):
+        if head == None or head.next == None:
+            return head
+        curr = runner = head
+        while runner.next and runner.next.next:
+            curr = curr.next
+            runner = runner.next.next
+        l1, l2 = head, curr.next
+        curr.next = None
+        head1 = self.sortList(l1)
+        head2 = self.sortList(l2)
+        head = self.mergesort(head1, head2)
+        return head
+
+    def mergesort(self,head1,head2):
+        if not head1: return head2
+        if not head2: return head1
+        dummy = prev = ListNode(0)
+        while head1 and head2:
+            if head1.val < head2.val:
+                prev.next = head1
+                prev = prev.next
+                head1 = head1.next
+            else:
+                prev.next = head2
+                prev = prev.next
+                head2 = head2.next
+        if not head1:
+            prev.next = head2
+        if not head2:
+            prev.next = head1
+        return dummy.next
+
+
+
+def execute():
+    l1 = initList([4,1,2,3,5])
+    sol = Solution()
+    printList(sol.sortList(l1))
+
+
+if __name__ == '__main__':
+    execute()
+
