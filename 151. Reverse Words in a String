@@ -9,6 +9,30 @@ class Solution(object):
         for sting in strings:
             res += ' '+sting
         return res[1:]
+        
+class Solution2(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        res = ''
+        strings = []
+        # strings = s.split()[::-1]
+        ele = ''
+        for char in s:
+            if char !=  " ":
+                ele += char
+            if char == ' ' and ele:
+                strings.append(ele)
+                ele = ''
+        strings.append(ele)
+        strings = strings[::-1]
+        # print(strings)
+        for sting in strings:
+            if sting:
+                res += ' '+sting
+        return res[1:]
 
 
 def execute():
