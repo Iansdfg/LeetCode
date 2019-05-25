@@ -1,0 +1,22 @@
+class Solution(object):
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        res = ''
+        strings = s.split()[::-1]
+        for sting in strings:
+            res += ' '+sting
+        return res[1:]
+
+
+def execute():
+    tokens = "the sky is blue"
+    sol = Solution()
+    print(sol.reverseWords(tokens))
+
+
+if __name__ == '__main__':
+    execute()
+
