@@ -1,0 +1,18 @@
+
+class Solution(object):
+    def trailingZeroes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return 0 if n < 5 else n // 5 + self.trailingZeroes(n // 5)
+
+
+def execute():
+    sol = Solution()
+    n = 11
+    print(sol.trailingZeroes(n))
+
+if __name__ == '__main__':
+    execute()
+
