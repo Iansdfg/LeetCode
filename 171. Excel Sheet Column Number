@@ -1,0 +1,23 @@
+class Solution(object):
+    def titleToNumber(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        res = 0
+        for i in range(len(s)):
+            res += (ord(s[-1]) - ord('A') + 1) * (26 ** i)
+            s = s[:-1]
+        return res
+
+
+
+
+def execute():
+    sol = Solution()
+    s = "ZY"
+    print(sol.titleToNumber(s))
+
+if __name__ == '__main__':
+    execute()
+
