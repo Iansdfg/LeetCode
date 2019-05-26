@@ -1,0 +1,39 @@
+class Solution(object):
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        dic = {}
+        if numerator == 0: return '0'
+        if numerator % denominator == 0: return str(numerator // denominator)
+        res = '' if numerator * denominator > 0 else '-'
+        numerator, denominator = abs(numerator), abs(denominator)
+        div, mod = numerator // denominator, numerator % denominator
+        res += str(div) + '.'
+        print('res: ', res, 'div: ', div, 'mod: ', mod)
+        while mod:
+            if mod not in dic:
+                dic[mod] = len(res)
+            else:
+                res = res[:dic[mod]] + '(' + res[dic[mod]:] + ')'
+                return res
+            mod *= 10
+            div = mod // denominator
+            mod = mod % denominator
+            res += str(div)
+            print('res: ', res, 'div: ', div, 'mod: ', mod)
+        return res
+
+def execute():
+    sol = Solution()
+    numerator = 1; denominator = 2
+    numerator = -2; denominator = 3
+    # numerator = -50; denominator = 8
+    # numerator = 2147483647; denominator = 37
+    print(sol.fractionToDecimal(numerator, denominator))
+
+if __name__ == '__main__':
+    execute()
+
