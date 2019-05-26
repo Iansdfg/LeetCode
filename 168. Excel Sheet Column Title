@@ -1,0 +1,21 @@
+class Solution(object):
+    def convertToTitle(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        res = ""
+        while n >= 1:
+            n -= 1
+            res = chr(n % 26 + ord("A")) + res
+            n = n // 26
+        return res
+
+def execute():
+    sol = Solution()
+    n = 1
+    print(sol.convertToTitle(n))
+
+if __name__ == '__main__':
+    execute()
+
