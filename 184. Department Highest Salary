@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+SELECT Department.Name AS Department , Employee.Name AS Employee, Salary
+FROM Employee 
+LEFT JOIN Department on Department.Id = DepartmentId
+
+    LEFT JOIN 
+        (SELECT DepartmentId, MAX(Salary) AS maxi FROM Employee
+        GROUP BY DepartmentId) 
+    AS Other ON Other.DepartmentId = Department.Id
+
+WHERE Salary = Other.maxi;
