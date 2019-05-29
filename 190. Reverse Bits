@@ -1,0 +1,13 @@
+class Solution:
+    # @param n, an integer
+    # @return an integer
+    def reverseBits(self, n):
+        s = []
+        while n > 0:
+            s.append(n%2)
+            n = n//2
+        res = 0
+        for i in range(len(s)):
+            res += math.pow(2,31-i)*s[i]
+        return int(res)
+            
