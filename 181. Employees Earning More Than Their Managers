@@ -1,0 +1,6 @@
+SELECT other.Name AS Employee
+# ,Employee.Id,Employee.Salary
+FROM Employee
+RIGHT JOIN Employee other
+ON Employee.Id = other.ManagerId
+where Employee.Salary < other.Salary;
