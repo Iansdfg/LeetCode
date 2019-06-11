@@ -15,8 +15,28 @@ class Solution(object):
             for j in range(1, n):
                 if int(matrix[i][j]) == 1:
                     dp[i][j] = min(dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1]) + 1
-        res = max(dp[0])
-        for row in dp:
-            if max(row) > res:
-                res=max(row)
-        return res*res
+        # res = max(dp[0])
+        # for row in dp:
+        #     if max(row) > res:
+        #         res = max(row)
+        return max(map(max,dp))**2
+
+
+def execute():
+    sol = Solution()
+    matrix = [['1', '0', '1', '0', '0'],
+              ['1', '0', '1', '1', '1'],
+              ['1', '1', '1', '1', '1'],
+              ['1', '0', '0', '1', '0']]
+
+    matrix = [["1", "1", "1", "1", "1", "1", "1", "1"],
+              ["1", "1", "1", "1", "1", "1", "1", "0"],
+              ["1", "1", "1", "1", "1", "1", "1", "0"],
+              ["1", "1", "1", "1", "1", "0", "0", "0"],
+              ["0", "1", "1", "1", "1", "0", "0", "0"]]
+    x, y = 0, 0
+    print(sol.maximalSquare(matrix))
+
+if __name__ == '__main__':
+    execute()
+
