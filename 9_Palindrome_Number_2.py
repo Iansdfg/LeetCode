@@ -13,8 +13,7 @@ class Solution(object):
             x = int(x / 10)
         if result == tar:
             return True
-
-
+        
 def execute():
     sol = Solution()
     s = 121
@@ -22,4 +21,3 @@ def execute():
 
 if __name__ == '__main__':
     execute()
-
