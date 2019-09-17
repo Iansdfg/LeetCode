@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 # recursive 
 class Solution(object):
     def isSymmetric(self, root):
@@ -23,6 +24,7 @@ class Solution(object):
             return self.mirrow(l.left, r.right) and self.mirrow(l.right, r.left)
         else:
             return False
+            
             
 # Iterative 
 class Solution(object):
