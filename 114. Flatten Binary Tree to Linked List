@@ -4,7 +4,6 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
 class Solution(object):
     def flatten(self, root):
         """
@@ -25,7 +24,6 @@ class Solution(object):
             root.right = root.left
             root.left = None
         return
-        
     # def move(self, root):
     #     if root.left:
     #         dummy = root.left
@@ -35,5 +33,3 @@ class Solution(object):
     #         root.right = root.left
     #         root.left = None
     #     return
-            
-        
