@@ -25,5 +25,3 @@ class Solution(object):
         if root.right:
             res += self.dfs(root.right, sum)
         return res
-        
-    
