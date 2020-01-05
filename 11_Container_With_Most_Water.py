@@ -20,7 +20,6 @@ class Solution(object):
                 left += 1
         return max
 
-
 def execute():
     sol = Solution()
     s = [1,8,6,2,5,4,8,3,7]
@@ -32,4 +31,3 @@ def execute():
 
 if __name__ == '__main__':
     execute()
-
